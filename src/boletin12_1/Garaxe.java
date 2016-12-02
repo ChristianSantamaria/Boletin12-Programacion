@@ -1,6 +1,7 @@
 package boletin12_1;
 
-import java.util.Date;
+import java.time.Duration;
+import java.time.Instant;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,10 +23,10 @@ public class Garaxe {
 
     public void Aparcar(Coche c) {
         if (numeroCoches < 5) {
-            Date horahoy = new Date();
-            c.setHoraEntrada(horahoy);
-            
             JOptionPane.showMessageDialog(null, "PLAZAS DISPOÑIBLES");
+
+            Instant TiempoInicio = Instant.now();
+            c.setHoraEntrada(TiempoInicio);
             numeroCoches += 1;
             for (int i = 0; i < 4; i++) {
                 if (this.matricula[i] == null) {
@@ -38,12 +39,32 @@ public class Garaxe {
         }
 
     }
-    
-    public void Facturar(Coche c){
-        
-        
-        
-        
+
+    public void Facturar(String matricula) {
+        for (int i = 0; i < 4; i++) {
+            if (this.matricula[i].getMatricula().equals(matricula)) {
+
+                long TiempoTotal = Duration.between(this.matricula[i].getHoraEntrada(), Instant.now()).toNanos();
+                JOptionPane.showInputDialog("Ha estado " + TiempoTotal);
+                float factura = 0;
+                if (TiempoTotal >= 3) {
+                    factura = (float) 1.5;
+                    if (TiempoTotal > 3) {
+                        for (int j = 0; j < TiempoTotal - 3; j++) {
+                            factura += 0.20;
+                        }
+                    }
+                }
+
+                System.out.println("Factura:");
+                System.out.println("Matricula coche: " + matricula);
+                System.out.println("Tempo: " + TiempoTotal);
+                System.out.println("Precio: " + factura);
+                break;
+            }
+        }
+        JOptionPane.showInputDialog("Coche no encontrado");
+
     }
 
 }

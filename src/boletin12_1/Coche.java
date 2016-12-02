@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package boletin12_1;
 
+import java.time.Instant;
 import java.util.Date;
 
 /**
@@ -13,12 +9,11 @@ import java.util.Date;
  */
 public class Coche {
     private String matricula;
-    private Date horaEntrada;
+    private Instant horaEntrada;
 
     public Coche(){
         
-    }
-    
+    }   
     public Coche(String matricula) {
         this.matricula = matricula;
     }
@@ -26,19 +21,15 @@ public class Coche {
     public String getMatricula() {
         return matricula;
     }
-
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
-
-    public Date getHoraEntrada() {
+    public Instant getHoraEntrada() {
         return horaEntrada;
     }
-
-    public void setHoraEntrada(Date horaEntrada) {
+    public void setHoraEntrada(Instant horaEntrada) {
         this.horaEntrada = horaEntrada;
     }
-    
     
     
 }
